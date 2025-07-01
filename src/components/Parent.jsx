@@ -1,11 +1,10 @@
 import React from 'react'
 
-const Parent = ({children}) => {
-  console.log(children)
+const Parent = ({username='admin',email="admin@gmail.com"}) => {
   return (
    <>
-    <h1>parent</h1>
-    <div>{children}</div>
+    <h1>username : {username} </h1>
+    <h1>email : {email}</h1>
    </>
   )
 }
