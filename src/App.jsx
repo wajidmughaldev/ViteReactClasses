@@ -1,84 +1,106 @@
-import { useState,useEffect } from "react";
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 const App = () => {
-  // let [isSubscribed, setIsSubscribed] = useState(0);
+  const [isData, setData] = useState([
+    { id: 1, name: "Ali Raza", age: 20, grade: "A", email: "ali@example.com" },
+    {
+      id: 2,
+      name: "Sara Khan",
+      age: 22,
+      grade: "B",
+      email: "sara@example.com",
+    },
+    {
+      id: 3,
+      name: "Usman Tariq",
+      age: 19,
+      grade: "A+",
+      email: "usman@example.com",
+    },
+    {
+      id: 4,
+      name: "Hina Shah",
+      age: 21,
+      grade: "C",
+      email: "hina@example.com",
+    },
+    {
+      id: 5,
+      name: "Bilal Ahmed",
+      age: 23,
+      grade: "B+",
+      email: "bilal@example.com",
+    },
+    {
+      id: 6,
+      name: "Maria Yousuf",
+      age: 20,
+      grade: "A",
+      email: "maria@example.com",
+    },
+    {
+      id: 7,
+      name: "Zain Malik",
+      age: 22,
+      grade: "B",
+      email: "zain@example.com",
+    },
+    {
+      id: 8,
+      name: "Fatima Noor",
+      age: 18,
+      grade: "A+",
+      email: "fatima@example.com",
+    },
+    {
+      id: 9,
+      name: "Hamza Ali",
+      age: 24,
+      grade: "C+",
+      email: "hamza@example.com",
+    },
+    {
+      id: 10,
+      name: "Iqra Siddiqui",
+      age: 21,
+      grade: "B-",
+      email: "iqra@example.com",
+    },
+  ]);
 
-  //  const handleSubscribe = () => {
-  //     setIsSubscribed(isSubscribed + 1)
-  //   }
 
-  // const [students, setStudents] = useState(['adnub', 'sajid', 'ali']);
+  const FindById=()=>{
+    const student = isData.find((s) => s.id === 2);
+    if (student) {
+      alert(`Found: ${student.name}, Age: ${student.age}, Email: ${student.email}`);
+    } else {
+      alert("Student not found");
+    }
+  }
 
 
-  const [isPost, setPosts] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(()=>{
-
-    fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((response) => {
-      setLoading(false);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    }).then((data) => {
-
-      setPosts(data);
-    });
-  
-  },[])
-
-  return (
+  return(
     <>
-      {/* <button
-        onClick={function () {
-          if(isSubscribed > 0){
-            setIsSubscribed(isSubscribed - 1);
-          }
-        }}
-      >
-        -
-      </button>
-      <h1>{isSubscribed}</h1>
-      <button onClick={() => setIsSubscribed(isSubscribed + 1)}>+</button> */}
+    <section className="flex flex-wrap gap-8">
+      {/* {
+        isData.map((sutdent,index)=>(
+        
+            <div key={index} className="card bg-amber-100 p-5 rounded-xl">
+              <small className="name">{sutdent.id}</small>
+              <h2 className="name">{sutdent.name}</h2>
+              <p className="age">Age: {sutdent.age}</p>
+              <p className="email">Email: {sutdent.email}</p>
+              <p className="grade">Grade: {sutdent.grade}</p>
+            </div>
+          
+        ))
+      } */}
 
+    <FindById/>
 
-       {isLoading && <h1>Loading...</h1>}
-  <div className="max-w-6xl mx-auto">
-    <h1 className="text-2xl font-bold mb-4 text-center">User Post Data</h1>
-    <div className="overflow-x-auto">
-      <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-        <thead>
-          <tr className="bg-gray-200 text-gray-700 text-left text-sm uppercase tracking-wider">
-            <th className="px-6 py-3">ID</th>
-            <th className="px-6 py-3">User ID</th>
-            <th className="px-6 py-3">Title</th>
-            <th className="px-6 py-3">Body</th>
-          </tr>
-        </thead>
-        <tbody id="dataTable" className="text-gray-600 text-sm">
-         
-          {
-            isPost ? isPost.map((post) => (
-              <tr key={post.id} className="border-b">
-                <td className="px-6 py-4">{post.id}</td>
-                <td className="px-6 py-4">{post.userId}</td>
-                <td className="px-6 py-4">{post.title}</td>
-                <td className="px-6 py-4">{post.body}</td>
-              </tr>
-            )) : (
-              <tr>
-                <td colSpan="4" className="text-center py-4">No Data Found.</td>
-              </tr>
-            )
-          }
-        </tbody>
-      </table>
-    </div>
-  </div>
+    </section>
     </>
-  );
+  )
 };
 
 export default App;
